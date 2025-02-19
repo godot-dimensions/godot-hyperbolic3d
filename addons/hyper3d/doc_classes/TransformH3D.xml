@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="TransformH3D" inherits="RefCounted" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+		Transformation in hyperbolic 3D space for [NodeH3D].
+	</brief_description>
+	<description>
+		TransformH3D defines the position and gyration of an object in hyperbolic 3D space, also known as a GyroVector. This is used as the transformation for [NodeH3D] nodes.
+		Translations in hyperbolic space are done with Möbius transformations, which account for holonomy in the curvature of the space. This means that translations can result in rotations, so pure translations do not really exist like in Euclidean space.
+		Scale does not really exist in hyperbolic space. Attempting to scale an object in hyperbolic space will never be conformal, and will cause the outer parts of the object to scale differently than the inner parts. If you need to scale something, that should be done with separate logic from the [TransformH3D] depending on the context.
+		As a consequence of both of the above points, [TransformH3D] is both the simplest structure that can represent translation in hyperbolic 3D space, and is also able to represent every transformation. This means that, in a way, [TransformH3D] replaces the functions of both [Vector3] and [Transform3D] in Euclidean space.
+		This code is derived from CodeParade's HyperEngine GyroVector designed for the game Hyperbolica.
+	</description>
+	<tutorials>
+		<link title="CodeParade HyperEngine GyroVector">https://github.com/HackerPoet/HyperEngine/blob/main/Assets/HyperEngine/HyperMath.cs#L360</link>
+	</tutorials>
+	<members>
+		<member name="gyration" type="Quaternion" setter="set_gyration" getter="get_gyration" default="Quaternion(0, 0, 0, 1)">
+			Gyration is the post-rotation as a result of holonomy, as well as regular rotation.
+		</member>
+		<member name="position" type="Vector3" setter="set_position" getter="get_position" default="Vector3(0, 0, 0)">
+			Position is the hyperbolic Möbius offset vector, or position on the Poincaré disk.
+		</member>
+	</members>
+</class>

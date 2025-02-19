@@ -6,6 +6,8 @@
 #include "core/config/engine.h"
 #endif
 
+#include "math/transform_h3d_bind.h"
+#include "math/world_h3d.h"
 #include "nodes/node_h3d.h"
 
 inline void add_godot_singleton(const StringName &p_singleton_name, Object *p_object) {
@@ -25,7 +27,10 @@ inline void remove_godot_singleton(const StringName &p_singleton_name) {
 }
 
 void initialize_hyper3d_module(ModuleInitializationLevel p_level) {
-	if (p_level == MODULE_INITIALIZATION_LEVEL_SCENE) {
+	if (p_level == MODULE_INITIALIZATION_LEVEL_CORE) {
+		GDREGISTER_CLASS(godot_h3d_bind::TransformH3D);
+		GDREGISTER_CLASS(WorldH3D);
+	} else if (p_level == MODULE_INITIALIZATION_LEVEL_SCENE) {
 		// Register node classes here.
 		// You can add singletons using add_godot_singleton().
 		GDREGISTER_CLASS(NodeH3D);

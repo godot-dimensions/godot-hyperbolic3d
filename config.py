@@ -10,6 +10,8 @@ def configure(env):
 def get_doc_classes():
 	return [
 		"NodeH3D",
+		"TransformH3D",
+		"WorldH3D",
 	]
 
 

@@ -10,6 +10,7 @@ env_modules.Append(CPPDEFINES=["GODOT_MODULE"])
 env_hyper3d = env_modules.Clone()
 
 env_hyper3d.add_source_files(env.modules_sources, "*.cpp")
+env_hyper3d.add_source_files(env.modules_sources, "math/*.cpp")
 env_hyper3d.add_source_files(env.modules_sources, "nodes/*.cpp")
 
 if env.editor_build:

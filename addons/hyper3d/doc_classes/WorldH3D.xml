@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="WorldH3D" inherits="Resource" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+		Math context for hyperbolic 3D space transformations.
+	</brief_description>
+	<description>
+		WorldH3D defines the context in which hyperbolic 3D math takes place, including transformations done with [NodeH3D] and [TransformH3D]. Hyperbolic math depends on the curvature of the space, which is stored in WorldH3D. This code is derived from CodeParade's HyperEngine HyperMath designed for the game Hyperbolica.
+	</description>
+	<tutorials>
+		<link title="CodeParade HyperEngine HyperMath">https://github.com/HackerPoet/HyperEngine/blob/main/Assets/HyperEngine/HyperMath.cs#L117</link>
+	</tutorials>
+	<methods>
+		<method name="get_curvature_class" qualifiers="const">
+			<return type="int" enum="WorldH3D.CurvatureClass" />
+			<description>
+				Returns the curvature class of the world. This is computed based on the tiling passed into [method set_tile_valence].
+			</description>
+		</method>
+		<method name="get_klein_scale" qualifiers="const">
+			<return type="float" />
+			<description>
+				Returns the scaling factor that converts unit tile coordinates to Klein coordinates, the location of each vertex in Klein coordinates. This is computed based on the tiling passed into [method set_tile_valence].
+			</description>
+		</method>
+		<method name="get_sides_per_tile" qualifiers="const">
+			<return type="int" />
+			<description>
+				The amount of sides each tile has. This is the same as [method get_tile_sides] but casted to an integer.
+			</description>
+		</method>
+		<method name="get_tile_width" qualifiers="const">
+			<return type="float" />
+			<description>
+				The hyperbolic width of a tile cell in dimensionless hyperbolic coordinates. This is computed based on the tiling passed into [method set_tile_valence].
+			</description>
+		</method>
+		<method name="get_tiles_per_vertex" qualifiers="const">
+			<return type="int" />
+			<description>
+				The amount of tiles that meet at each vertex. This is the same as [method get_tile_valence] but casted to an integer.
+			</description>
+		</method>
+		<method name="set_tile_valence_and_sides">
+			<return type="void" />
+			<param index="0" name="tile_valence" type="float" />
+			<param index="1" name="tile_sides" type="float" default="4.0" />
+			<description>
+				Sets the amount of tiles that meet at each vertex, and the amount of sides each tile has. These values are recommended to be integers to allow for tiling the terrain, but in-between values are also possible.
+				Setting this will change the value returned by other functions such as [method get_cell_width], [method get_curvature_class], [method get_klein_scale], [method get_sides_per_tile], [method get_tile_sides], [method get_tile_valence], and [method get_tiles_per_vertex]. It will also affect the behavior of all other functions in this class.
+				When [param tile_sides] is at the default value of 4, the tiles are squares. Then for [param tile_valence] 3 is the minimum and corresponds to spherical geometry ([constant CURVATURE_SPHERICAL]), 4 is the default and corresponds to flat Euclidean geometry ([constant CURVATURE_EUCLIDEAN]), and 5 or more correspond to hyperbolic geometry ([constant CURVATURE_HYPERBOLIC]).
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="is_main_world" type="bool" setter="set_is_main_world" getter="get_is_main_world" default="false">
+			If [code]true[/code], this [WorldH3D] will stay used on this node regardless of any ancestor [WorldH3D] resources. By default, the first [WorldH3D] resource in the scene is used as the world, ensuring that prefabs and other sub-scenes like player characters use the world of the scene they are instanced in instead of making their own. This usually should be left at the default, but can be enabled if you want to have multiple hyperbolic worlds loaded at once.
+		</member>
+		<member name="tile_sides" type="float" setter="set_tile_sides" getter="get_tile_sides" default="4.0">
+			The amount of sides each tile has. The curvature depends on both this value and [member tile_valence]. See [method set_tile_valence_and_sides] for more information.
+		</member>
+		<member name="tile_valence" type="float" setter="set_tile_valence" getter="get_tile_valence" default="4.0">
+			The amount of tiles that meet at each vertex. The curvature depends on both this value and [member tile_sides]. See [method set_tile_valence_and_sides] for more information.
+		</member>
+	</members>
+	<constants>
+		<constant name="CURVATURE_HYPERBOLIC" value="-1" enum="CurvatureClass">
+			Hyperbolic curvature class, with negative curvature (-1). There is infinite space, and the geometry is similar to the Poincaré disk.
+		</constant>
+		<constant name="CURVATURE_EUCLIDEAN" value="0" enum="CurvatureClass">
+			Euclidean curvature class, with zero curvature (0, not curved). This is the same as regular "flat" 3D space.
+		</constant>
+		<constant name="CURVATURE_SPHERICAL" value="1" enum="CurvatureClass">
+			Spherical curvature class, with positive curvature (+1). There is a finite amount of space, and the geometry is similar to the surface of a sphere.
+		</constant>
+	</constants>
+</class>

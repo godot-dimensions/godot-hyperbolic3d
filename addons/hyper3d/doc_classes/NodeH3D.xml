@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class name="NodeH3D" inherits="Node" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
 	<brief_description>
+		Hyperbolic 3D node, inherited by all hyperbolic 3D nodes.
 	</brief_description>
 	<description>
+		NodeH3D is the base class for all hyperbolic 3D nodes. It contains a hyperbolic [TransformH3D] to store its Poincaré disk position and gyration. It also contains a reference to the [WorldH3D] context in which it exists, which provides math functions for hyperbolic 3D space depending on the curvature of the space.
 	</description>
 	<tutorials>
 	</tutorials>
+	<methods>
+		<method name="get_transform" qualifiers="const">
+			<return type="TransformH3D" />
+			<description>
+				The hyperbolic [TransformH3D] of the node. This returns a copy of the transform. Mutating this will not affect the node.
+			</description>
+		</method>
+		<method name="set_transform">
+			<return type="void" />
+			<param index="0" name="transform" type="TransformH3D" />
+			<description>
+				Sets the hyperbolic [TransformH3D] of the node. This copies the transform into the node.
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="gyration" type="Quaternion" setter="set_gyration" getter="get_gyration" default="Quaternion(0, 0, 0, 1)">
+			Gyration is the post-rotation as a result of holonomy, as well as regular rotation.
+		</member>
+		<member name="position" type="Vector3" setter="set_position" getter="get_position" default="Vector3(0, 0, 0)">
+			Position is the hyperbolic Möbius offset vector, or position on the Poincaré disk.
+		</member>
+		<member name="world" type="WorldH3D" setter="set_world" getter="get_world">
+			The [WorldH3D] context in which the node exists. This provides math functions for hyperbolic 3D space depending on the curvature of the space.
+		</member>
+	</members>
 </class>
