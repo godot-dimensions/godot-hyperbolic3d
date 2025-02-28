@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../godot_hyper3d_defines.h"
+#include "../godot_hyperbolic3d_defines.h"
 
 struct _NO_DISCARD_ TransformH3D {
 	// This is the post-rotation as a result of holonomy, as well as regular rotation.

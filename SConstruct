@@ -1,4 +1,4 @@
 #!/usr/bin/env python
 
 # This file is for building as a Godot GDExtension.
-SConscript("addons/hyper3d/SConstruct")
+SConscript("addons/hyperbolic3d/SConstruct")

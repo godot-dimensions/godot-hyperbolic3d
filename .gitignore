@@ -5,11 +5,20 @@
 /android/
 /gen/
 
+# GDExtension generated files
+src/gen/
+
 # General C++ generated files
 *.a
 *.ax
 *.bc
+*.creator
+*.creator.user
 *.d
+*.exp
+*.files
+*.idb
+*.includes
 *.lib
 *.lo
 *.o

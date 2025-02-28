@@ -26,7 +26,8 @@ inline void remove_godot_singleton(const StringName &p_singleton_name) {
 #endif
 }
 
-void initialize_hyper3d_module(ModuleInitializationLevel p_level) {
+void initialize_hyperbolic3d_module(ModuleInitializationLevel p_level) {
+	// Note: Classes MUST be registered in inheritance order.
 	if (p_level == MODULE_INITIALIZATION_LEVEL_CORE) {
 		GDREGISTER_CLASS(godot_h3d_bind::TransformH3D);
 		GDREGISTER_CLASS(WorldH3D);
@@ -37,7 +38,7 @@ void initialize_hyper3d_module(ModuleInitializationLevel p_level) {
 	}
 }
 
-void uninitialize_hyper3d_module(ModuleInitializationLevel p_level) {
+void uninitialize_hyperbolic3d_module(ModuleInitializationLevel p_level) {
 	if (p_level == MODULE_INITIALIZATION_LEVEL_SCENE) {
 		// Perform cleanup here.
 		// You can remove singletons using remove_godot_singleton().

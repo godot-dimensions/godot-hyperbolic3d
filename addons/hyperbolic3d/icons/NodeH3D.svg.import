@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dw0rfiux7b4dt"
-path="res://.godot/imported/NodeH3D.svg-ca79f5d0d1ec0d818b6ff6ee53ec68f6.ctex"
+path="res://.godot/imported/NodeH3D.svg-744f803298748da14b6ba138a6f677eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/hyper3d/icons/NodeH3D.svg"
-dest_files=["res://.godot/imported/NodeH3D.svg-ca79f5d0d1ec0d818b6ff6ee53ec68f6.ctex"]
+source_file="res://addons/hyperbolic3d/icons/NodeH3D.svg"
+dest_files=["res://.godot/imported/NodeH3D.svg-744f803298748da14b6ba138a6f677eb.ctex"]
 
 [params]
 
@@ -32,6 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
+svg/scale=4.0
 editor/scale_with_editor_scale=false
 editor/convert_colors_with_editor_theme=false

@@ -7,15 +7,15 @@ env = SConscript("src/godot-cpp/SConstruct")
 # Add source files.
 env.Append(
     CPPPATH=[
-        "./,src/,../../",
+        "src/",
+        "../../",
         "../../math",
         "../../nodes",
     ]
 )
 
 sources = (
-    Glob("*.cpp")
-    + Glob("src/*.cpp")
+    Glob("src/*.cpp")
     + Glob("../../*.cpp")
     + Glob("../../math/*.cpp")
     + Glob("../../nodes/*.cpp")
@@ -24,7 +24,7 @@ sources = (
 env.Append(CPPDEFINES=["GDEXTENSION"])
 
 bin_path = "bin/"
-extension_name = "godot_hyper3d"
+extension_name = "godot_hyperbolic3d"
 debug_or_release = "release" if env["target"] == "template_release" else "debug"
 
 if not "arch_suffix" in env:
@@ -35,13 +35,14 @@ if env["target"] == "editor":
     sources += Glob("../../editor/*.cpp")
 
 if env["target"] in ["editor", "template_debug"]:
+    # Add documentation XML files as a generated cpp file. Only works in Godot 4.3+.
     try:
         doc_data = env.GodotCPPDocData("src/gen/doc_data.gen.cpp", source=Glob("doc_classes/*.xml"))
         sources.append(doc_data)
     except AttributeError:
         print("Not including class reference as we're targeting a pre-4.3 baseline.")
 
-# Create the library target (e.g. libgodot_hyper3d.linux.debug.x86_64.so).
+# Create the library target (e.g. libgodot_hyperbolic3d.linux.debug.x86_64.so).
 if env["platform"] == "macos":
     library = env.SharedLibrary(
         "{0}/lib{1}.{2}.{3}.framework/{1}.{2}.{3}".format(
@@ -54,8 +55,9 @@ if env["platform"] == "macos":
     )
 else:
     library = env.SharedLibrary(
-        "{}/lib{}.{}.{}.{}{}".format(
+        "{}/{}{}.{}.{}.{}{}".format(
             bin_path,
+            env.subst('$SHLIBPREFIX'),
             extension_name,
             env["platform"],
             debug_or_release,

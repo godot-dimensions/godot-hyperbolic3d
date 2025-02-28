@@ -1,0 +1,28 @@
+[configuration]
+
+entry_symbol = "godot_hyperbolic3d_library_init"
+compatibility_minimum = 4.3
+reloadable = true
+
+[libraries]
+
+macos.debug = "./bin/libgodot_hyperbolic3d.macos.debug.framework"
+macos.release = "./bin/libgodot_hyperbolic3d.macos.release.framework"
+windows.debug.x86_64 = "./bin/godot_hyperbolic3d.windows.debug.x86_64.dll"
+windows.release.x86_64 = "./bin/godot_hyperbolic3d.windows.release.x86_64.dll"
+linux.debug.x86_64 = "./bin/libgodot_hyperbolic3d.linux.debug.x86_64.so"
+linux.release.x86_64 = "./bin/libgodot_hyperbolic3d.linux.release.x86_64.so"
+linux.debug.arm64 = "./bin/libgodot_hyperbolic3d.linux.debug.arm64.so"
+linux.release.arm64 = "./bin/libgodot_hyperbolic3d.linux.release.arm64.so"
+linux.debug.rv64 = "./bin/libgodot_hyperbolic3d.linux.debug.rv64.so"
+linux.release.rv64 = "./bin/libgodot_hyperbolic3d.linux.release.rv64.so"
+web.debug.wasm32 = "./bin/libgodot_hyperbolic3d.web.debug.wasm32.wasm"
+web.release.wasm32 = "./bin/libgodot_hyperbolic3d.web.release.wasm32.wasm"
+android.debug.arm64 = "./bin/libgodot_hyperbolic3d.android.debug.arm64.so"
+android.release.arm64 = "./bin/libgodot_hyperbolic3d.android.release.arm64.so"
+ios.debug = "./bin/libgodot_hyperbolic3d.ios.debug.universal.dylib"
+ios.release = "./bin/libgodot_hyperbolic3d.ios.release.universal.dylib"
+
+[icons]
+
+NodeH3D = "icons/NodeH3D.svg"

@@ -16,8 +16,8 @@ def get_doc_classes():
 
 
 def get_doc_path():
-	return "addons/hyper3d/doc_classes"
+	return "addons/hyperbolic3d/doc_classes"
 
 
 def get_icons_path():
-	return "addons/hyper3d/icons"
+	return "addons/hyperbolic3d/icons"

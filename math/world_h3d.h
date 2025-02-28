@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../godot_hyper3d_defines.h"
+#include "../godot_hyperbolic3d_defines.h"
 
 #if GDEXTENSION
 #include <godot_cpp/classes/resource.hpp>
