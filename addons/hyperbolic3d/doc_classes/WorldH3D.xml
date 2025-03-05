@@ -13,31 +13,31 @@
 		<method name="get_curvature_class" qualifiers="const">
 			<return type="int" enum="WorldH3D.CurvatureClass" />
 			<description>
-				Returns the curvature class of the world. This is computed based on the tiling passed into [method set_tile_valence].
+				Returns the curvature class of the world. This is computed based on the tiling set in [member tile_valence] or passed into [method set_tile_valence_and_sides].
 			</description>
 		</method>
 		<method name="get_klein_scale" qualifiers="const">
 			<return type="float" />
 			<description>
-				Returns the scaling factor that converts unit tile coordinates to Klein coordinates, the location of each vertex in Klein coordinates. This is computed based on the tiling passed into [method set_tile_valence].
+				Returns the scaling factor that converts unit tile coordinates to Klein coordinates, the location of each vertex in Klein coordinates. This is computed based on the tiling set in [member tile_valence] or passed into [method set_tile_valence_and_sides].
 			</description>
 		</method>
 		<method name="get_sides_per_tile" qualifiers="const">
 			<return type="int" />
 			<description>
-				The amount of sides each tile has. This is the same as [method get_tile_sides] but casted to an integer.
+				The amount of sides each tile has. This is the same as [member tile_sides] but casted to an integer.
 			</description>
 		</method>
 		<method name="get_tile_width" qualifiers="const">
 			<return type="float" />
 			<description>
-				The hyperbolic width of a tile cell in dimensionless hyperbolic coordinates. This is computed based on the tiling passed into [method set_tile_valence].
+				The hyperbolic width of a tile cell in dimensionless hyperbolic coordinates. This is computed based on the tiling set in [member tile_sides] or passed into [method set_tile_valence_and_sides].
 			</description>
 		</method>
 		<method name="get_tiles_per_vertex" qualifiers="const">
 			<return type="int" />
 			<description>
-				The amount of tiles that meet at each vertex. This is the same as [method get_tile_valence] but casted to an integer.
+				The amount of tiles that meet at each vertex. This is the same as [member tile_valence] but casted to an integer.
 			</description>
 		</method>
 		<method name="set_tile_valence_and_sides">
@@ -46,7 +46,7 @@
 			<param index="1" name="tile_sides" type="float" default="4.0" />
 			<description>
 				Sets the amount of tiles that meet at each vertex, and the amount of sides each tile has. These values are recommended to be integers to allow for tiling the terrain, but in-between values are also possible.
-				Setting this will change the value returned by other functions such as [method get_cell_width], [method get_curvature_class], [method get_klein_scale], [method get_sides_per_tile], [method get_tile_sides], [method get_tile_valence], and [method get_tiles_per_vertex]. It will also affect the behavior of all other functions in this class.
+				Setting this will change the value in [member tile_valence] and [member tile_sides], and the value returned by other functions such as [method get_curvature_class], [method get_klein_scale], [method get_sides_per_tile], [method get_tile_width], and [method get_tiles_per_vertex]. It will also affect the behavior of all other functions in this class.
 				When [param tile_sides] is at the default value of 4, the tiles are squares. Then for [param tile_valence] 3 is the minimum and corresponds to spherical geometry ([constant CURVATURE_SPHERICAL]), 4 is the default and corresponds to flat Euclidean geometry ([constant CURVATURE_EUCLIDEAN]), and 5 or more correspond to hyperbolic geometry ([constant CURVATURE_HYPERBOLIC]).
 			</description>
 		</method>
