@@ -5,8 +5,8 @@
 * text=auto eol=lf
 
 # Only include the compiled addon when downloading from the Asset Library.
-/**                  export-ignore
-/addons              !export-ignore
-/addons/**           !export-ignore
-/addons/2pt5d/src    export-ignore
-/addons/2pt5d/src/** export-ignore
+/**                         export-ignore
+/addons                     !export-ignore
+/addons/**                  !export-ignore
+/addons/hyperbolic3d/src    export-ignore
+/addons/hyperbolic3d/src/** export-ignore
