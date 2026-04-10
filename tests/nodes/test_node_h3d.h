@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../nodes/node_h3d.h"
+
 #include "tests/test_macros.h"
 
 namespace TestNodeH3D {
