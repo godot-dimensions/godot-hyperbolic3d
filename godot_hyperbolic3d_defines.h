@@ -14,9 +14,11 @@
 
 #if GDEXTENSION
 // Extremely common classes used by most files. Customize for your extension as needed.
+#include <godot_cpp/classes/ref.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/core/version.hpp>
 #include <godot_cpp/variant/string.hpp>
+#define CoreBind godot
 #define GDEXTMOD_GUI_INPUT _gui_input
 #define GET_NODE_TYPE(m_parent, m_type, m_path) m_parent->get_node<m_type>(NodePath(m_path))
 // Including the namespace helps make GDExtension code more similar to module code.
@@ -27,6 +29,7 @@ using namespace godot;
 #include "core/version.h"
 #define GDEXTMOD_GUI_INPUT gui_input
 #define GET_NODE_TYPE(m_parent, m_type, m_path) Object::cast_to<m_type>(m_parent->get_node(NodePath(m_path)))
+#define MOUSE_BUTTON_LEFT MouseButton::LEFT
 
 #ifndef GODOT_VERSION_MAJOR
 // Prior to Godot 4.5, the Godot version macros were just "VERSION_*" which did not match the godot-cpp API.
@@ -36,10 +39,20 @@ using namespace godot;
 #define GODOT_VERSION_PATCH VERSION_PATCH
 #endif
 
+#if GODOT_VERSION_MAJOR > 4 || (GODOT_VERSION_MAJOR == 4 && GODOT_VERSION_MINOR > 6)
+// In Godot 4.7, callable_mp was moved to its own header.
+#include "core/object/callable_mp.h"
+#endif
+
 #if GODOT_VERSION_MAJOR == 4 && GODOT_VERSION_MINOR < 6
 // Prior to Godot 4.6, the internal API of free_rid in RenderingServer and other servers did not match the exposed API.
 // See https://github.com/godotengine/godot/pull/107139
 #define free_rid free
+#endif
+
+#if GODOT_VERSION_MAJOR == 4 && GODOT_VERSION_MINOR < 5
+// In Godot 4.5 and later, namespaces were capitalized: core_bind -> CoreBind.
+#define CoreBind core_bind
 #endif
 
 #if GODOT_VERSION_MAJOR == 4 && GODOT_VERSION_MINOR > 4
@@ -52,7 +65,6 @@ using namespace godot;
 #define Math_TAU Math::TAU
 #endif
 
-#define MOUSE_BUTTON_LEFT MouseButton::LEFT
 #else
 #error "Must build as Godot GDExtension or Godot module."
 #endif

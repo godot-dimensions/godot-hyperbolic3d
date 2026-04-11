@@ -4,6 +4,7 @@
 #include <godot_cpp/classes/engine.hpp>
 #elif GODOT_MODULE
 #include "core/config/engine.h"
+#include "core/core_bind.h"
 #endif
 
 #include "math/transform_h3d_bind.h"
@@ -11,19 +12,11 @@
 #include "nodes/node_h3d.h"
 
 inline void add_godot_singleton(const StringName &p_singleton_name, Object *p_object) {
-#if GDEXTENSION
-	Engine::get_singleton()->register_singleton(p_singleton_name, p_object);
-#elif GODOT_MODULE
-	Engine::get_singleton()->add_singleton(Engine::Singleton(p_singleton_name, p_object));
-#endif
+	CoreBind::Engine::get_singleton()->register_singleton(p_singleton_name, p_object);
 }
 
 inline void remove_godot_singleton(const StringName &p_singleton_name) {
-#if GDEXTENSION
-	Engine::get_singleton()->unregister_singleton(p_singleton_name);
-#elif GODOT_MODULE
-	Engine::get_singleton()->remove_singleton(p_singleton_name);
-#endif
+	CoreBind::Engine::get_singleton()->unregister_singleton(p_singleton_name);
 }
 
 void initialize_hyperbolic3d_module(ModuleInitializationLevel p_level) {
