@@ -66,18 +66,14 @@ void NodeH3D::_notification(int p_what) {
 	}
 }
 
-void NodeH3D::_get_property_list(List<PropertyInfo> *p_list) const {
-	for (List<PropertyInfo>::Element *E = p_list->front(); E; E = E->next()) {
-		PropertyInfo &prop = E->get();
-		if (prop.name == StringName("world")) {
-			NodeH3D *parent_h3d = Object::cast_to<NodeH3D>(get_parent());
-			if (parent_h3d && parent_h3d->get_world() == _world) {
-				// If the parent has the same world, don't save this node's world into the tscn file.
-				prop.usage = PROPERTY_USAGE_EDITOR;
-			}
+void NodeH3D::_validate_property(PropertyInfo &p_property) const {
+	if (p_property.name == StringName("world")) {
+		NodeH3D *parent_h3d = Object::cast_to<NodeH3D>(get_parent());
+		if (parent_h3d && parent_h3d->get_world() == _world) {
+			// If the parent has the same world, don't save this node's world into the tscn file.
+			p_property.usage = PROPERTY_USAGE_EDITOR;
 		}
 	}
-	Node::_get_property_list(p_list);
 }
 
 Ref<godot_h3d_bind::TransformH3D> NodeH3D::get_transform_bind() const {
