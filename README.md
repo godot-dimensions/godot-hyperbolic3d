@@ -43,3 +43,25 @@ is recommended, but GDExtension allows you to avoid recompiling Godot.
 To compile as a GDExtension, clone this repository anywhere, with submodules,
 and run `scons target=editor`. You can open the repository's `project.godot`
 in Godot to test the GDExtension, and copy the `addons/hyperbolic3d` to your own project.
+
+## Versions
+
+This repo can be compiled either as an engine module or a GDExtension.
+Most editor features only work as a module, so the module is highly recommended.
+The GDExtension version is provided on a best-effort basis, and supports
+all runtime features but limited editor functionality.
+
+This repo only supports Godot 4.4 and later. Godot Hyperbolic3D formerly supported
+[Godot 4.3](https://github.com/godot-dimensions/godot-hyperbolic3d/releases/tag/last-4.3-commit),
+but this was discontinued.
+
+## License
+
+This repo is free and open source software licensed under The Unlicense.
+Credit and attribution is appreciated but not required.
+
+Some parts of some files in this repository are derivative from Godot Engine
+and therefore [its MIT license](https://godotengine.org/license) applies.
+You must provide credit to Godot Engine by including its LICENSE.
+Considering this repo is only usable in conjunction with Godot anyway,
+this will not be a problem because you should already be crediting Godot.

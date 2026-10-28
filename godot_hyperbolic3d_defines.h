@@ -96,3 +96,7 @@ using namespace godot;
 #ifndef _NO_DISCARD_
 #define _NO_DISCARD_ [[nodiscard]]
 #endif // _NO_DISCARD_
+
+#if GODOT_VERSION_MAJOR < 4 || (GODOT_VERSION_MAJOR == 4 && GODOT_VERSION_MINOR < 4)
+#error "Godot Hyperbolic3D requires Godot 4.4 or later."
+#endif
